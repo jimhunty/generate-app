@@ -1,0 +1,24 @@
+<ion-view title="Generate Conference">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-plus" ng-click="go('app/person/new');"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-list>
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Search" ng-model="search">
+    </label>
+    <!-- Looping over the network object; ordering by the name of the person; filtering using the search box above -->
+      <ion-item class="item-avatar" ng-repeat="person in network | filter:search | orderBy:'name' " href="#/app/person/{{person.id}}">
+        <!-- ng-src used as our source is being fed via JS, which loads after a normal image would load -->
+        <img ng-src="img/{{person.avatar}}" />
+        <h2>{{person.name}}</h2>
+        <!-- ng-if statement used to display a slash if both elements are around -->
+        <p>{{person.twitter}} <span ng-if="person.phone != '' && person.twitter  != ''">/</span> {{person.phone}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

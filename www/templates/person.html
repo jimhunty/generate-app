@@ -1,0 +1,47 @@
+<ion-view title="{{person.name || 'Add a Contact'}}">
+  <ion-content class="has-header" padding="true">
+    <ion-list>
+    <form>
+
+	  <label class="item item-input">
+	    <span class="input-label">Name</span>
+	    <input type="text" value="{{person.name}}" ng-model="person.name"	>
+	  </label>
+
+	  <!-- Error message if name is not filled out -->
+	  <div class="row" ng-show="error.name == true"><div class="col assertive">* Name is a required field</div></div>
+	  
+	  <label class="item item-input">
+	    <span class="input-label">Twitter</span>
+	    <input type="text" value="{{person.twitter}}" ng-model="person.twitter">
+	  </label>
+	  
+	  <label class="item item-input">
+	    <span class="input-label">Phone</span>
+	    <input type="text" value="{{person.phone}}" ng-model="person.phone">
+	  </label>
+	  
+	  <!-- Error message if you dont add in a phone number or a twitter handle -->
+	  <div class="row"  ng-show="error.contact == true"><div class="col assertive">* Enter a Twitter or Phone</div></div>
+
+	  <div class="row">
+		  <button class="button button-block button-assertive col col-25" ng-click="cancel();">
+			  Cancel
+		  </button>
+		  <input type="submit" class="button button-block button-positive col col-50 col-offset-25" value="Update" ng-click="update();">
+		  </form>
+	  </div>
+	  
+	  <hr />
+	  
+	  <!-- ng-show and ng-hide used to display the buttons whether or not certain variables were set --> 
+	  <div class="row">
+		  <div class="button-bar">
+			  <a ng-show="person.phone" class="button button-balanced" ng-href="tel:{{person.phone}}">Call Contact</a>
+			  <a ng-hide="showAddToContacts" class="button button-assertive" ng-click="delete();">Delete</a>
+		  </div>
+	  </div>
+
+	</ion-list>
+  </ion-content>
+</ion-view>
